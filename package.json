@@ -1,26 +1,30 @@
 {
   "name": "svg-to-excalidraw",
   "version": "0.0.2",
-  "description": "Convert SVG to Excalidraw’s file format",
+  "description": "Convert SVG to Excalidraw's file format",
   "main": "dist/bundle.js",
+  "bin": {
+    "svg-to-excalidraw": "./bin/svg-to-excalidraw.js"
+  },
   "files": [
     "dist/bundle.js",
+    "bin/svg-to-excalidraw.js",
     "svg-to-excalidraw.d.ts"
   ],
   "types": "svg-to-excalidraw.d.ts",
   "scripts": {
-    "build": "yarn clean && webpack --config webpack.config.js",
-    "build:watch": "yarn clean && webpack --config webpack.config.js --watch",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider npm run clean && NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js",
+    "build:watch": "NODE_OPTIONS=--openssl-legacy-provider npm run clean && NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js --watch",
     "clean": "rimraf dist",
-    "fix": "yarn fix:other && yarn fix:code",
-    "fix:code": "yarn test:code -- --fix",
-    "fix:other": "yarn prettier -- --write",
+    "fix": "npm run fix:other && npm run fix:code",
+    "fix:code": "npm run test:code -- --fix",
+    "fix:other": "npm run prettier -- --write",
     "lint:check": "eslint .",
     "lint:write": "eslint . --fix",
     "prettier": "prettier \"**/*.{css,scss,json,md,html,yml}\" --ignore-path=.eslintignore",
-    "test": "yarn test:typecheck && yarn test:code && yarn test:other",
+    "test": "npm run test:typecheck && npm run test:code && npm run test:other",
     "test:code": "eslint --max-warnings=0 --ignore-path .gitignore --ext .js,.ts,.tsx .",
-    "test:other": "yarn prettier -- --list-different",
+    "test:other": "npm run prettier -- --list-different",
     "test:typecheck": "tsc"
   },
   "prettier": "@excalidraw/prettier-config",
@@ -57,7 +61,10 @@
   },
   "dependencies": {
     "chroma-js": "^2.1.2",
+    "commander": "^14.0.3",
+    "dommatrix": "^0.1.1",
     "gl-matrix": "^3.3.0",
+    "jsdom": "^28.0.0",
     "nanoid": "^3.1.25",
     "path-data-parser": "^0.1.0",
     "points-on-curve": "^0.2.0",

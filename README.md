@@ -1,14 +1,51 @@
 # svg-to-excalidraw
 
-Library to convert SVG to Excalidraw’s file format.
+Library to convert SVG to Excalidraw's file format.
 
 ## :floppy_disk: Installation
 
+### As a Library
+
 ```bash
-yarn add svg-to-excalidraw
+npm install svg-to-excalidraw
+```
+
+### As a CLI Tool
+
+```bash
+npm install -g svg-to-excalidraw
 ```
 
 ## :beginner: Usage
+
+### Command Line Interface
+
+Convert SVG files to Excalidraw format from the command line:
+
+```bash
+# Basic usage - output to stdout
+svg-to-excalidraw input.svg
+
+# Save to a file
+svg-to-excalidraw input.svg -o output.excalidraw
+
+# Pretty print the JSON output
+svg-to-excalidraw input.svg -p -o output.excalidraw
+
+# Read from stdin
+cat input.svg | svg-to-excalidraw -
+
+# Show help
+svg-to-excalidraw --help
+```
+
+**Options:**
+- `-o, --output <file>` - Output file path (default: stdout)
+- `-p, --pretty` - Pretty print the JSON output
+- `-V, --version` - Output the version number
+- `-h, --help` - Display help
+
+### Programmatic Usage
 
 ```typescript
 import svgToEx from "svg-to-excalidraw";
